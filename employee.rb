@@ -6,18 +6,20 @@ class Employee
         @title = title
         @salary = salary
         @boss = boss
-        
+        add_manager
     end
 
     def bonus_multiplier(multiplier)
         bonus = @salary * multiplier
     end
 
-    def add_manager
+    def add_manager 
         if !boss.nil?
             boss.employees << self
         end
-        
-
     end
+
+
 end
+
+
