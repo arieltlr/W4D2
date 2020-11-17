@@ -1,7 +1,8 @@
 module Slideable
 
-    HORIZONTAL_DIRS = []
-    DIAGONAL_DIRS = []
+    HORIZONTAL_DIRS = [[0, 1][0, -1]]
+    DIAGONAL_DIRS = [[-1, 1], [1,1], [1, -1], [-1, -1]]
+    VERTICAL_DIRS = [[1, 0], [-1, 0]]
 
     def diagonal_dirs(start_pos)
         
