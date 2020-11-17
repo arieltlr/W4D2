@@ -21,8 +21,8 @@ class Board
         @board[0][7] = Piece.new("Rook")
         @board[7][7] = Piece.new("Rook")
         @board[7][0] = Piece.new("Rook")
-        # @board[1].map! { |ele| ele = Piece.new("Pawn") }
-        # @board[6].map! { |ele| ele = Piece.new("Pawn") }
+        @board[1].map! { |ele| ele = Piece.new("Pawn") }
+        @board[6].map! { |ele| ele = Piece.new("Pawn") }
     end
 
     def [](pos)
@@ -30,23 +30,24 @@ class Board
         @board[x][y]
     end
 
+    def []=(pos, val)
+        x, y = pos
+        @board[x][y] = val
+    end
+
     def move_piece(start_pos, end_pos)
-        debugger
-        raise "no piece there!" if @board[start_pos].nil?
-        debugger
+        raise "no piece there!" if !valid_pos?(start_pos) || self[start_pos].nil?
         raise "can't move there! no man's land!" if !valid_pos?(end_pos)
 
-        piece = @board[start_pos]
-        debugger
-        @board[end_pos] = piece
-        debugger
-        @board[start_pos] = nil
-
+        piece = self[start_pos]
+        self[end_pos] = piece
+        self[start_pos] = nil
     end
 
     def valid_pos?(pos)
         x, y = pos
         return false if x > 7 || y > 7
+        return false if x < 0 || y < 0
     end
 
 
@@ -56,3 +57,8 @@ class Board
     end
 
 end
+
+game = Board.new
+game.print_board
+game.move_piece([0,4], [3,4])
+game.print_board
