@@ -6,7 +6,8 @@ class Pawn < Piece
         super
     end
 
-    def move
+    def moves
+        side_attacks + forward_steps
 
     end
 
@@ -44,11 +45,20 @@ class Pawn < Piece
             pos_moves << [2, 0]
         end
 
+        pos_moves.each do |pos|
+            pos.map! {|num| num * forward_dir}
+        end
         pos_moves
+
     end
 
     def side_attacks
-        deltas = [1,1]
+        deltas = [[1,1], [1, -1]]
+        
+        deltas.each do |pos|
+            pos.map! {|num| num * forward_dir}
+        end
+        deltas
 
     end
 

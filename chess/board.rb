@@ -9,7 +9,7 @@ require_relative "null_piece"
 require "byebug"
 
 class Board
-
+    attr_reader :rows
     def initialize
         @rows = Array.new(8) { Array.new(8) }
         @rows[0][3] = Queen.new(:black, self, [0,3])
@@ -28,8 +28,17 @@ class Board
         @rows[0][7] = Rook.new(:black, self, [0,7])
         @rows[7][7] = Rook.new(:white, self, [7,7])
         @rows[7][0] = Rook.new(:white, self, [7,0])
-        # @rows[1].map! { |ele| ele = Piece.new("Pawn") }
-        # @rows[6].map! { |ele| ele = Piece.new("Pawn") }
+        (0..7).each do |i| 
+            @rows[1][i] = Pawn.new(:black, self, [1, i]) 
+        end
+        (0..7).each do |i| 
+            @rows[6][i] = Pawn.new(:white, self, [6, i]) 
+        end
+        (2..5).each do |row|
+            (0..7).each do |col|
+                @rows[row][col] = NullPiece.instance
+            end
+        end
     end
 
     def [](pos)
@@ -52,10 +61,12 @@ class Board
     end
 
     def valid_pos?(pos)
+        # debugger
         x, y = pos
+        # debugger
         return false if x > 7 || y > 7
         return false if x < 0 || y < 0
-        
+        true
     end
 
     # def check if spot is occupied 
@@ -72,5 +83,6 @@ end
 
 game = Board.new
 game.print_rows
+p game.rows[0][2].moves
 # game.move_piece([0,4], [3,4])
 # game.print_rows
