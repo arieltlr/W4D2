@@ -1,4 +1,4 @@
-require_relative "./slideable.rb"
+require_relative "slideable"
 require_relative "piece"
 
 class Queen < Piece

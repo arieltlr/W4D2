@@ -32,15 +32,18 @@ module Slideable
     def grow_unblocked_moves_in_dir(dx, dy)
         collected_moves = []
         x, y = self.pos
-        until !valid_pos?([x,y]) # add position occupied when you can reference pieces. 
+        until !valid_pos?([x,y]) # if !@board[new_pos].nil? # add position occupied when you can reference pieces. 
             y += dy
             x += dx
             new_pos = [x, y]
+            if !@board[new_pos].nil?
+                if self.color != @board[new_pos].color
+                    collected_moves << new_pos
+                end
+            end
             collected_moves << new_pos
         end
         collected_moves  
     end
-
-
 
 end
