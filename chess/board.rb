@@ -4,35 +4,35 @@ require "byebug"
 class Board
 
     def initialize
-        @board = Array.new(8) { Array.new(8) }
-        @board[0][3] = Piece.new("Queen")
-        @board[7][3] = Piece.new("Queen")
-        @board[0][4] = Piece.new("King")
-        @board[7][4] = Piece.new("King")
-        @board[0][2] = Piece.new("Bishop")
-        @board[0][5] = Piece.new("Bishop")
-        @board[7][2] = Piece.new("Bishop")
-        @board[7][5] = Piece.new("Bishop")
-        @board[0][1] = Piece.new("Knight")
-        @board[0][6] = Piece.new("Knight")
-        @board[7][1] = Piece.new("Knight")
-        @board[7][6] = Piece.new("Knight")
-        @board[0][0] = Piece.new("Rook")
-        @board[0][7] = Piece.new("Rook")
-        @board[7][7] = Piece.new("Rook")
-        @board[7][0] = Piece.new("Rook")
-        @board[1].map! { |ele| ele = Piece.new("Pawn") }
-        @board[6].map! { |ele| ele = Piece.new("Pawn") }
+        @rows = Array.new(8) { Array.new(8) }
+        @rows[0][3] = Piece.new("Queen")
+        @rows[7][3] = Piece.new("Queen")
+        @rows[0][4] = Piece.new("King")
+        @rows[7][4] = Piece.new("King")
+        @rows[0][2] = Piece.new("Bishop")
+        @rows[0][5] = Bishop.new(:black, self, [0,5])
+        @rows[7][2] = Piece.new("Bishop")
+        @rows[7][5] = Piece.new("Bishop")
+        @rows[0][1] = Piece.new("Knight")
+        @rows[0][6] = Piece.new("Knight")
+        @rows[7][1] = Piece.new("Knight")
+        @rows[7][6] = Piece.new("Knight")
+        @rows[0][0] = Piece.new("Rook")
+        @rows[0][7] = Piece.new("Rook")
+        @rows[7][7] = Piece.new("Rook")
+        @rows[7][0] = Piece.new("Rook")
+        @rows[1].map! { |ele| ele = Piece.new("Pawn") }
+        @rows[6].map! { |ele| ele = Piece.new("Pawn") }
     end
 
     def [](pos)
         x, y = pos
-        @board[x][y]
+        @rows[x][y]
     end
 
     def []=(pos, val)
         x, y = pos
-        @board[x][y] = val
+        @rows[x][y] = val
     end
 
     def move_piece(start_pos, end_pos)
@@ -52,13 +52,13 @@ class Board
 
 
 
-    def print_board
-        puts @board
+    def print_rows
+        puts @rows
     end
 
 end
 
 game = Board.new
-game.print_board
+game.print_rows
 game.move_piece([0,4], [3,4])
-game.print_board
+game.print_rows
