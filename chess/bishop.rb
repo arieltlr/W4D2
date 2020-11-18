@@ -8,6 +8,9 @@ class Bishop < Piece
     def symbol
     end
 
+    def move # logic for where the piece can move. 
+    end
+
     private
     def move_dirs
     end

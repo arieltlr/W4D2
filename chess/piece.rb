@@ -6,7 +6,7 @@ class Piece
       @position = position      
    end
 
-   def moves
+   def moves # not of huge importance. Will be overwritten by every subclass. 
 
    end
 

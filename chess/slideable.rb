@@ -1,8 +1,9 @@
 module Slideable
+    #all logic for where a piece can move. 
 
-    HORIZONTAL_DIRS = [[0, 1][0, -1]]
+    HORIZONTAL_DIRS = [[0, 1][0, -1], [1, 0], [-1, 0]]
     DIAGONAL_DIRS = [[-1, 1], [1,1], [1, -1], [-1, -1]]
-    VERTICAL_DIRS = [[1, 0], [-1, 0]]
+
 
     def diagonal_dirs(start_pos)
         
@@ -16,6 +17,8 @@ module Slideable
     def vertical_dirs
 
     end
+
+    # grow on will continueslly add the direction it could go 
     
 
 
